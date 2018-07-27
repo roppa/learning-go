@@ -5,14 +5,10 @@ import "fmt"
 func main() {}
 
 func ExampleHello() {
-	fmt.Println("hello")
-	// Output: hello
+	fmt.Println("hello") // hello
 }
 
 func ExampleSalutations() {
-	fmt.Println("hello, and")
-	fmt.Println("goodbye")
-	// Output:
-	// hello, and
-	// goodbye
+	fmt.Println("hello, and") // hello, and
+	fmt.Println("goodbye")    // goodbye
 }
