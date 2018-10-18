@@ -1,6 +1,6 @@
 # Learning GoLang
 
-You have to start with a [hello world](/01-hello/hello.go).
+You usually have to start with a [hello world](/01-hello/hello.go). But the best way to do it is [TDD](/00-testing/first_test.go).
 
 ```go
 package main
