@@ -1,6 +1,12 @@
 # Learning GoLang
 
-You usually have to start with a [hello world](/01-hello/hello.go). But the best way to do it is [TDD](/00-testing/first_test.go).
+You usually have to start with a [hello world](/01-hello/hello.go). But the best way to learn programming is with [TDD](/00-testing/first_test.go).
+
+## Setup
+
+First [install go](https://golang.org/doc/install) and then setup your [Go path](https://golang.org/doc/code.html#GOPATH).
+
+Lets test the setup by creating a folder called `$GOPATH/src/learning`. Paste the below into a file called `hello.go`:
 
 ```go
 package main
@@ -12,17 +18,23 @@ func main() {
 }
 ```
 
-To run, either use `go run hello/hello.go` or compile and then execute with:
+To execute use `go run hello.go`.
+
+Go is also compiled into an executable. To do so run:
 
 ```bash
-cd hello
-go build hello.go
+cd learning
+go build hello.go // this creates the hello executable
 ./hello
 ```
 
-So the `package main` tells GoLang that this is an executable file and not a library. An executable file must also have a `func main()`.
+The `package main` tells GoLang that this is an executable file and not a library. An executable file must also have a `func main()`.
 
-The `fmt` is a package that handles input/output.
+The `fmt` is a package that handles input/output, in this case printing to stdout.
+
+## Packages
+
+
 
 ## Variables
 
@@ -57,11 +69,15 @@ You will see the reserved word 'make'. This function takes care of allocating me
 
 ## Conditionals
 
-[06-conditionals-iterators/statements.go](/0-)
+[06-conditionals-iterators/statements.go](/06-conditionals-iterators)
 
 ## Functions
 
-Coming soon
+[07-functions/functions.go](/07-functions)
+
+func [name]([[paramName/s,] type]) [[[name]return type], {(return types,)] {
+  ...
+}
 
 ## Structs
 
@@ -73,6 +89,10 @@ pointers/pointer.go
 
 ## TDD
 
+```bash
+go test --coverage
+```
+
 testing/[coming soon]
 
 ## HTTP Server
@@ -82,3 +102,8 @@ http-server/server.go
 ## Time and Tickers
 
 http-json/http-json.go
+
+## References
+
+- [Go Start](https://github.com/alco/gostart)
+- [Glang writing unit tests](https://blog.alexellis.io/golang-writing-unit-tests/)
