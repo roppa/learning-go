@@ -34,7 +34,13 @@ The `fmt` is a package that handles input/output, in this case printing to stdou
 
 ## Packages
 
+Grouping together code.
 
+## Types
+
+Strongly typed language.
+
+`bool`, `string`, `int`, `float64`
 
 ## Variables
 
