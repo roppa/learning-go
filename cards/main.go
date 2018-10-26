@@ -31,14 +31,31 @@ func main() {
 	dealer := createPlayer("Dealer")
 	player1 := createPlayer("Mark")
 
-	deal(&dealer, &deck)
-	deal(&player1, &deck)
+	fmt.Printf("%v cards left\n", len(deck))
 
-	deal(&dealer, &deck)
-	deal(&player1, &deck)
+	dealPlayer(&dealer, &deck)
+	dealPlayer(&player1, &deck)
+	dealPlayer(&dealer, &deck)
+	dealPlayer(&player1, &deck)
 
-	dealerMin, dealerMax := getPlayerTotal(dealer)
-	player1Min, player1Max := getPlayerTotal(player1)
+	dealerMin, dealerMax := getPlayerTotal(&dealer)
+	player1Min, player1Max := getPlayerTotal(&player1)
+
+	fmt.Printf("%v cards left\n", len(deck))
+	fmt.Printf("Dealer min: %v, max: %v\n", dealerMin, dealerMax)
+	fmt.Printf("Player min: %v, max: %v\n", player1Min, player1Max)
+
+	if player1Min < 16 || player1Max < 16 {
+		dealPlayer(&player1, &deck)
+	}
+
+	if dealerMin < 16 || dealerMax < 16 {
+		dealPlayer(&dealer, &deck)
+	}
+
+	dealerMin, dealerMax = getPlayerTotal(&dealer)
+	player1Min, player1Max = getPlayerTotal(&player1)
+
 	fmt.Printf("%v cards left\n", len(deck))
 	fmt.Printf("Dealer min: %v, max: %v\n", dealerMin, dealerMax)
 	fmt.Printf("Player min: %v, max: %v\n", player1Min, player1Max)
@@ -66,15 +83,15 @@ func createPlayer(name string) Player {
 	return Player{name: name}
 }
 
-func deal(player *Player, deck *Deck) {
+func dealPlayer(player *Player, deck *Deck) {
 	card := (*deck)[len((*deck))-1]
 	(*player).hand = append((*player).hand, card)
 	*deck = (*deck)[:len((*deck))-1]
 }
 
-func getPlayerTotal(player Player) (int, int) {
+func getPlayerTotal(player *Player) (int, int) {
 	minTotal, maxTotal := 0, 0
-	for _, card := range player.hand {
+	for _, card := range (*player).hand {
 		minTotal += card.value[0]
 		if len(card.value) == 1 {
 			maxTotal += card.value[0]
