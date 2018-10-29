@@ -1,16 +1,14 @@
 package datastructures
 
 import (
-	"fmt"
 	"strings"
 )
 
-func main() {
-	source := "this is a this test how now this brown test"
+func getDictionary(source string) map[string]int {
 	words := strings.Fields(source)
 	m := make(map[string]int)
 	for _, word := range words {
 		m[word]++
 	}
-	fmt.Println(m)
+	return m
 }
