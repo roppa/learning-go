@@ -32,6 +32,16 @@ The `package main` tells GoLang that this is an executable file and not a librar
 
 The `fmt` is a package that handles input/output, in this case printing to stdout.
 
+## Offline Go
+
+If you have go installed, run:
+
+```bash
+godoc -http=:6060
+```
+
+Then open to http://127.0.0.1:6060/ in your browser.
+
 ## Packages
 
 Grouping together code.
@@ -93,6 +103,8 @@ struct/struct.go
 
 pointers/pointer.go
 
+## Casting
+
 ## TDD
 
 ```bash
@@ -108,6 +120,10 @@ http-server/server.go
 ## Time and Tickers
 
 http-json/http-json.go
+
+## Command Line
+
+- [Go by example - flags](https://gobyexample.com/command-line-flags)
 
 ## References
 
