@@ -43,7 +43,7 @@ func TestSaveNewTask(t *testing.T) {
 	}
 }
 
-func TestDeleteTask(t *tsting.T) {
+func TestDeleteTask(t *testing.T) {
 	t.Log("DeleteTask")
 
 	ds := Datastore{}

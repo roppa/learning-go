@@ -108,7 +108,7 @@ pointers/pointer.go
 ## TDD
 
 ```bash
-go test --coverage
+go test --cover
 ```
 
 testing/[coming soon]
