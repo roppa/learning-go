@@ -79,30 +79,71 @@ func main() {
 
 	fmt.Printf("%v cards left\n", len(deck))
 
-	dealPlayer(&dealer, &deck)
-	dealPlayer(&player1, &deck)
-	dealPlayer(&dealer, &deck)
-	dealPlayer(&player1, &deck)
+	playRound(&dealer, &player1, &deck)
+
+	fmt.Printf("%v cards left\n", len(deck))
+}
+
+func playRound(dealer *Player, player *Player, deck *Deck) {
+	dealPlayer(dealer, deck)
+	dealPlayer(player, deck)
+	dealPlayer(dealer, deck)
+	dealPlayer(player, deck)
 
 	dealerMin, dealerMax := dealer.getMinMax()
-	player1Min, player1Max := player1.getMinMax()
+	playerMin, playerMax := player.getMinMax()
 
-	fmt.Printf("%v cards left\n", len(deck))
+	fmt.Println("Dealing ...")
 	fmt.Printf("Dealer min: %v, max: %v\n", dealerMin, dealerMax)
-	fmt.Printf("Player min: %v, max: %v\n", player1Min, player1Max)
+	fmt.Printf("Player min: %v, max: %v\n", playerMin, playerMax)
 
-	if player1Min < 16 || player1Max < 16 {
-		dealPlayer(&player1, &deck)
+	for {
+		if playerMin < 16 || playerMax < 16 {
+			dealPlayer(player, deck)
+			playerMin, playerMax = player.getMinMax()
+			fmt.Printf("Player min: %v, max: %v\n\n", playerMin, playerMax)
+		}
+
+		if dealerMin < 16 || dealerMax < 16 {
+			dealPlayer(dealer, deck)
+			dealerMin, dealerMax = dealer.getMinMax()
+			fmt.Printf("Dealer min: %v, max: %v\n", dealerMin, dealerMax)
+		}
+
+		fmt.Printf("%v cards left\n", len(*deck))
+
+		if (playerMin >= 16 && playerMax >= 16) && (dealerMin >= 16 && dealerMax >= 16) {
+			break
+		}
 	}
 
-	if dealerMin < 16 || dealerMax < 16 {
-		dealPlayer(&dealer, &deck)
+	var dealerHighest int
+	var playerHighest int
+	if dealerMax <= 21 {
+		dealerHighest = dealerMax
+	} else {
+		dealerHighest = dealerMin
 	}
 
-	dealerMin, dealerMax = dealer.getMinMax()
-	player1Min, player1Max = player1.getMinMax()
+	if playerMax <= 21 {
+		playerHighest = playerMax
+	} else {
+		playerHighest = playerMin
+	}
 
-	fmt.Printf("%v cards left\n", len(deck))
-	fmt.Printf("Dealer min: %v, max: %v\n", dealerMin, dealerMax)
-	fmt.Printf("Player min: %v, max: %v\n", player1Min, player1Max)
+	if dealerHighest > 21 && playerHighest > 21 {
+		fmt.Println("Both players bust")
+	} else if dealerHighest > 21 && playerHighest <= 21 {
+		fmt.Printf("Dealer bust: %v, player winner: %v\n", dealerHighest, playerHighest)
+	} else if playerHighest > 21 && dealerHighest <= 21 {
+		fmt.Printf("Player bust: %v, dealer winner: %v\n", playerHighest, dealerHighest)
+	} else if dealerHighest > playerHighest || dealerHighest > 21 {
+		fmt.Printf("Dealer wins: %v, player: %v\n", dealerHighest, playerHighest)
+	} else if dealerHighest == playerHighest {
+		fmt.Printf("No winner, dealer: %v, player: %v\n", dealerHighest, playerHighest)
+	} else {
+		fmt.Printf("Player wins: %v, dealer: %v\n", playerHighest, dealerHighest)
+	}
+
+	fmt.Println("Game over")
 }
