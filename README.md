@@ -28,7 +28,7 @@ go build hello.go // this creates the hello executable
 ./hello
 ```
 
-The `package main` tells GoLang that this is an executable file and not a library. An executable file must also have a `func main()`.
+The `package main` tells GoLang that this is an executable file and not a library. An executable file must also have a `func main()`. If it is named something other than `main` that would be a library.
 
 The `fmt` is a package that handles input/output, in this case printing to stdout.
 
@@ -42,9 +42,9 @@ godoc -http=:6060
 
 Then open to http://127.0.0.1:6060/ in your browser.
 
-## Packages
+## Packages/Libraries
 
-Grouping together code.
+A package, or library, groups together code which is utilised by another program.
 
 ## Types
 
@@ -52,9 +52,21 @@ Strongly typed language.
 
 `bool`, `string`, `int`, `float64`
 
+## Testing and TDD
+
+Testing, like a lot of languages, is included in GoLang.
+
+[00-testing](/00-testing)
+
+To run a test:
+
+```bash
+go test --cover
+```
+
 ## Variables
 
-02-variables/variabls.go
+[02-variables](02-variables/variabls.go)
 
 Variable names. I can't beleive I have to mention this. Reading a lot of peoples interpretations of [pikestyle](http://doc.cat-v.org/bell_labs/pikestyle) reinforces my opinion of the human race. Oh yeah, you commute on the London tube every day for years and lets hear your opnion. Anyway, I digress. Pike clearly mentions 'clarity of expression'. The variable should describe exactly what it is. Our conventions for i in for loops is totally fine. Anyone who has programmed will know this one. That doesn't mean to say that all variables should be single letters does it? Code is written for humans. Beautiful code should read like well written prose.
 
@@ -68,6 +80,8 @@ Variable names. I can't beleive I have to mention this. Reading a lot of peoples
 
 ## Arrays and Slices
 
+[05-array-slices](/05-array-slices)
+
 So Go does a lot of things for you. For this example we want to demonstrate arrays and slices. So lets have seperate files for this. Oh, so how do you import these files then? Aahhh, you don't have to do anything. Well, apart from change the run command to:
 
 ```bash
@@ -76,8 +90,6 @@ go build main.go array.go slice.go
 ```
 
 The run command needs to group all these files into an executable.
-
-[05-array-slices](/05-array-slices)
 
 Rarely use arrays directly as they are pretty inflexible. Use slices instead. Of course arrays have their uses.
 
@@ -104,14 +116,6 @@ struct/struct.go
 pointers/pointer.go
 
 ## Casting
-
-## TDD
-
-```bash
-go test --cover
-```
-
-testing/[coming soon]
 
 ## HTTP Server
 
