@@ -129,6 +129,10 @@ http-json/http-json.go
 
 - [Go by example - flags](https://gobyexample.com/command-line-flags)
 
+## Race Conditions
+
+- [GoLang data race and how to fix it](https://www.sohamkamani.com/blog/2018/02/18/golang-data-race-and-how-to-fix-it/)
+
 ## References
 
 - [Go Start](https://github.com/alco/gostart)
