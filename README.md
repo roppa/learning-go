@@ -52,6 +52,15 @@ Strongly typed language.
 
 `bool`, `string`, `int`, `float64`
 
+Go word size is the memory address size. Based on your machine, 32bit, 64bit etc. An integer is based on your word size, so on a 64bit machine it will be 64 bits long, 32bits on a 32 bit machine.
+
+Go zero values:
+
+  - nil
+  - 0
+  - false
+  - “”
+
 ## Testing and TDD
 
 Testing, like a lot of languages, is included in GoLang.
@@ -69,6 +78,13 @@ go test --cover
 [02-variables](02-variables/variabls.go)
 
 Variable names. I can't beleive I have to mention this. Reading a lot of peoples interpretations of [pikestyle](http://doc.cat-v.org/bell_labs/pikestyle) reinforces my opinion of the human race. Oh yeah, you commute on the London tube every day for years and lets hear your opnion. Anyway, I digress. Pike clearly mentions 'clarity of expression'. The variable should describe exactly what it is. Our conventions for i in for loops is totally fine. Anyone who has programmed will know this one. That doesn't mean to say that all variables should be single letters does it? Code is written for humans. Beautiful code should read like well written prose.
+
+You can do multiple assignment:
+
+```golang
+a, b, c := 10, 100, 1000
+fmt.Println(a, b, c)
+```
 
 ## Numbers
 
@@ -95,6 +111,8 @@ Rarely use arrays directly as they are pretty inflexible. Use slices instead. Of
 
 You will see the reserved word 'make'. This function takes care of allocating memory for the slice in this example.
 
+`make` does a few things, one is creating a channel, takes care of allocating memory for a slice.
+
 ## Conditionals
 
 [06-conditionals-iterators/statements.go](/06-conditionals-iterators)
@@ -107,19 +125,38 @@ func [name]([[paramName/s,] type]) [[[name]return type], {(return types,)] {
   ...
 }
 
+Functions beginning with a capital letter are exported. Fat.Println etc, notice the capital P.
+
 ## Structs
 
-struct/struct.go
+A struct is a custom type, which is an aggregate of other types.
+
+In structs, always have attributes listed from shortest length of the data type. int8, int16 etc as go pads out the structure with memory allocation based on the first longest?
+
+[struct/struct.go](struct/struct.go)
 
 ## Pointers
 
+Go is pass by value. To pass by reference you need to use pointers in the calling function parameter (*) and use 'address of' in the callee function parameters and body (&) &[variable name] i.e. &count.
+
 pointers/pointer.go
 
-## Casting
+## Go routines
+
+All Go you write gets run on a goroutine - an OS thread.
+
+## Channels
+
+Channels are pipes that connect concurrent goroutines.
 
 ## HTTP Server
 
 http-server/server.go
+
+## Pipes
+
+- [Golang pipes](https://golang.org/src/io/pipe.go)
+- [Zup Zup pipes](https://zupzup.org/io-pipe-go/)
 
 ## Time and Tickers
 
@@ -137,3 +174,16 @@ http-json/http-json.go
 
 - [Go Start](https://github.com/alco/gostart)
 - [Glang writing unit tests](https://blog.alexellis.io/golang-writing-unit-tests/)
+- [How to write Go code](https://golang.org/doc/code.html).
+- [Go by example](https://gobyexample.com/)
+- [Learn go with tests](https://github.com/quii/learn-go-with-tests)
+- [GoLang tour](https://tour.golang.org/list)
+- [Awesome GoLang information from rakyll.org!](https://rakyll.org/)
+- [TDD](https://leanpub.com/golang-tdd/read)
+- [Web apps with GoLang](https://astaxie.gitbooks.io/build-web-application-with-golang/en/)
+- [GoLang talks](https://talks.golang.org/2012/10things.slide#8)
+- [Thinking in Go](https://hackmongo.com/post/thinking-in-go/)
+- [Ultimate Go programming](https://www.safaribooksonline.com/videos/ultimate-go-programming/9780134757476/9780134757476-ugpg_02_02_03_02)
+- [Programming guide](https://programming.guide/go/three-dots-ellipsis.html)
+- [research.swtch.com](https://research.swtch.com/)
+- [golangbot.com](https://golangbot.com)
