@@ -56,10 +56,10 @@ Go word size is the memory address size. Based on your machine, 32bit, 64bit etc
 
 Go zero values:
 
-  - nil
-  - 0
-  - false
-  - “”
+- nil
+- 0
+- false
+- “”
 
 ## Testing and TDD
 
@@ -122,7 +122,7 @@ You will see the reserved word 'make'. This function takes care of allocating me
 [07-functions/functions.go](/07-functions)
 
 func [name]([[paramName/s,] type]) [[[name]return type], {(return types,)] {
-  ...
+...
 }
 
 Functions beginning with a capital letter are exported. Fat.Println etc, notice the capital P.
@@ -137,9 +137,20 @@ In structs, always have attributes listed from shortest length of the data type.
 
 ## Pointers
 
-Go is pass by value. To pass by reference you need to use pointers in the calling function parameter (*) and use 'address of' in the callee function parameters and body (&) &[variable name] i.e. &count.
+Go is pass by value. To pass by reference you need to use pointers in the calling function parameter (\*) and use 'address of' in the callee function parameters and body (&) &[variable name] i.e. &count.
 
-pointers/pointer.go
+- `&` - 'the address of'
+- `*` - 'the value of'
+
+```go
+  hello := "Hello"
+  var helloPointer *string = &hello
+  fmt.Println(&hello) // 0xc0000101e0
+  fmt.Println(*&hello) // Hello
+  fmt.Println(*helloPointer) // Hello
+```
+
+[pointers/pointer.go](./pointers)
 
 ## Go routines
 
